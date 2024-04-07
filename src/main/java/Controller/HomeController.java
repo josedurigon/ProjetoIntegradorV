@@ -1,15 +1,20 @@
 package Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping(value="/")
+@Controller
 public class HomeController {
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(){
-        return "home";
+        return "index";
+    }
+
+    @PostMapping("/api/resource")
+    public String createResource(@RequestBody String requestData) {
+
+        System.out.println("Received POST request with data: " + requestData);
+        return "Resource created successfully";
     }
 }
