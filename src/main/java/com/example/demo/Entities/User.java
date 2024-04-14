@@ -1,18 +1,16 @@
-package Entities;
+package com.example.demo.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "\"user\"")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public String id;
+    public String idUser;
     public String nome;
     public String userName;
     public String pass;

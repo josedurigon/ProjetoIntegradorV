@@ -1,4 +1,4 @@
-package Business;
+package com.example.demo.Business;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
