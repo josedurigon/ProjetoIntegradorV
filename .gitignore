@@ -35,6 +35,8 @@ build/
 ### app.settings ###
 app.settings
 application.properties
-
+project.properties
+*.properties
+project.properties
 
 
