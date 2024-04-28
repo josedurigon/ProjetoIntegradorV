@@ -34,6 +34,7 @@ public class SendImageController {
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 
             HttpEntity<byte[]> requestEntity = new HttpEntity<>(bytes, headers);
+            
 
             String apiUrl = "http://localhost:9090";
 
