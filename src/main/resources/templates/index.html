@@ -4,15 +4,27 @@
     <meta charset="utf-8">
     <title>Spring Security Example</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
+    
+
+    <!--<link th:href="@{/styles.css}" rel="stylesheet" />-->
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+
+
+
 </head>
 <body>
+<div class="container-principal">
     <div th:class = "container">
-        <h1>Welcome home!</h1>
-        <a href="/upload">MRI analyzer</a>
-
+        <h1 class="welcome">Welcome home!</h1>
     </div>
+    <div th:class="container-subtitulo">
+        <p>Faça o upload de suas imagens para a IA analisar:</p><br>
+        <a href="/upload">MRI analyzer</a>
+    </div>
+</div>
+<div class="container-2">
 
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
