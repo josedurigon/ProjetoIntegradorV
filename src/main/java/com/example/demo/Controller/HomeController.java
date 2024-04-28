@@ -1,4 +1,4 @@
-package Controller;
+package com.example.demo.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ public class HomeController {
         return "index";
     }
 
-    @PostMapping("/api/resource")
+    @PostMapping("/resource")
     public String createResource(@RequestBody String requestData) {
 
         System.out.println("Received POST request with data: " + requestData);
