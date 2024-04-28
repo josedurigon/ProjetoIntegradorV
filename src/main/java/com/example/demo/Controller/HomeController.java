@@ -14,7 +14,6 @@ public class HomeController {
     @PostMapping("/resource")
     public String createResource(@RequestBody String requestData) {
 
-
         System.out.println("Received POST request with data: " + requestData);
         return "Resource created successfully";
     }
