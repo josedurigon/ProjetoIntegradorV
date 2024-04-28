@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-@Controller("/upload")
+@Controller
 public class SendImageController {
 
     @GetMapping("/upload")
@@ -20,7 +20,7 @@ public class SendImageController {
     }
 
     @PostMapping("/uploadImage")
-    public ResponseEntity<String> uploadFile(@RequestParam("File")MultipartFile file){
+    public ResponseEntity<String> uploadFile(@RequestParam("image")MultipartFile file){
         if(file.isEmpty()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please select a file and upload it!!");
         }
