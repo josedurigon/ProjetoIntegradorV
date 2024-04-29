@@ -25,6 +25,15 @@ public class SendImageController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please select a file and upload it!!");
         }
 
+
+
+
+
+
+
+
+
+        
         try{
             byte[] bytes = file.getBytes();
 
