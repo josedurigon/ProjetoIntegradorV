@@ -1,5 +1,7 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Business.Persistencia;
+import com.example.demo.Entities.MRI;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,12 @@ import java.io.IOException;
 
 @Controller
 public class SendImageController {
+
+    private final Persistencia persistencia;
+
+    public SendImageController(Persistencia persistencia) {
+        this.persistencia = persistencia;
+    }
 
     @GetMapping("/upload")
     public String upload(){
@@ -32,9 +40,10 @@ public class SendImageController {
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-
+            MRI mri = new MRI();
             HttpEntity<byte[]> requestEntity = new HttpEntity<>(bytes, headers);
-            
+
+            persistencia.save(mri);
 
             String apiUrl = "http://localhost:9090";
 
