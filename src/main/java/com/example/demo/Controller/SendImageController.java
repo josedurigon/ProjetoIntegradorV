@@ -16,10 +16,8 @@ import java.io.IOException;
 @Controller
 public class SendImageController {
 
-    private final Persistencia persistencia;
 
     public SendImageController(Persistencia persistencia) {
-        this.persistencia = persistencia;
     }
 
     @GetMapping("/upload")
@@ -43,7 +41,6 @@ public class SendImageController {
             MRI mri = new MRI();
             HttpEntity<byte[]> requestEntity = new HttpEntity<>(bytes, headers);
 
-            persistencia.save(mri);
 
             String apiUrl = "http://localhost:9090";
 
