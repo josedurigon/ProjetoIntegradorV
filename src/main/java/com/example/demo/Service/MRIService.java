@@ -47,7 +47,7 @@ public class MRIService  {
     }
 
     public void deleteMri(String id){
-
+        mriRepository.deleteById(id);
     }
 
 
