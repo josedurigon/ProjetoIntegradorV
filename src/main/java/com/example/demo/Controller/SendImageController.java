@@ -17,9 +17,6 @@ import java.io.IOException;
 public class SendImageController {
 
 
-    public SendImageController(Persistencia persistencia) {
-    }
-
     @GetMapping("/upload")
     public String upload(){
         return "upload";
@@ -42,8 +39,8 @@ public class SendImageController {
             HttpEntity<byte[]> requestEntity = new HttpEntity<>(bytes, headers);
 
 
-            String apiUrl = "http://localhost:9090";
-
+//            String apiUrl = "http://localhost:9090";
+            String apiUrl = "C:\\Github\\demo\\src\\main\\java\\com\\example\\demo\\diretorioTeste";
             ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
 
             if(responseEntity.getStatusCode() == HttpStatus.OK){
