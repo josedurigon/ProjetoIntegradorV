@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface MRIRepository extends JpaRepository<MRI, String> {
+public interface MRIRepository extends JpaRepository<MRI, Long> {
 
 }

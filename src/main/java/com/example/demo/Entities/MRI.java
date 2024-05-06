@@ -10,11 +10,15 @@ import lombok.Data;
 public class MRI {
 
     @Id
-    public String idMri;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long idMri;
 
     @ManyToOne
     @JoinColumn(name="idUser")
     public User user;
+    public String nomePaciente;
+    public String contatoPaciente;
+    public String descricaoDiagnostico;
 
 
 }

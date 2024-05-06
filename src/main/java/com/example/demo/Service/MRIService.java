@@ -20,7 +20,7 @@ public class MRIService  {
         return mriRepository.findAll();
     }
 
-    public Optional getImageById(String id){
+    public Optional getImageById(Long id){
         return mriRepository.findById(id);
     }
 
@@ -32,7 +32,7 @@ public class MRIService  {
         mriRepository.flush();
     }
 
-    public boolean updateMRI(String id, MRI updatedMRI) {
+    public boolean updateMRI(Long id, MRI updatedMRI) {
         Optional<MRI> existingMRIOptional = mriRepository.findById(id);
         if (existingMRIOptional.isPresent()) {
             MRI existingMRI = existingMRIOptional.get();
@@ -46,7 +46,7 @@ public class MRIService  {
         }
     }
 
-    public void deleteMri(String id){
+    public void deleteMri(Long id){
         mriRepository.deleteById(id);
     }
 

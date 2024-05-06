@@ -12,8 +12,19 @@
     <section class="container">
         <ection class="container-formulario">
             <h3 class="titulo-formulario">Faça o upload das suas imagens aqui</h3>
-            <form action="/uploadImage" method="POST" enctype="multipart/form-data">
+            <form action="/uploadImage" method="POST" enctype="multipart/form-data" th:object="${formularioEnvio}">
                 <input type="file" name="image" accept="image/*" multiple required>
+                <div class="container-input">
+                    <label for="nomePaciente">Nome Paciente</label>
+                    <input type="text" th:field="*{nomePaciente}">
+
+                    <label for="contatoPaciente">Contato</label>
+                    <input type="text" th:field="*{contatoPaciente}">
+
+                    <label for="descricaoDiagnostico">Descrição</label>
+                    <input type="text" th:field="*{descricaoDiagnostico}">
+                </div>
+
                 <br>
                 <button type="submit">Upload</button>
             </form>
