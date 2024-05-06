@@ -1,7 +1,10 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Entities.MRI;
+import com.example.demo.Entities.Paciente;
 import com.example.demo.Service.MRIService;
+import com.example.demo.Service.PacienteService;
+import com.example.demo.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -19,33 +22,36 @@ import java.io.IOException;
 public class SendImageController {
 
    private final MRIService mriService;
+   private final PacienteService pacienteService;
+
 
    @Autowired
-    public SendImageController(MRIService mriService) {
+    public SendImageController(MRIService mriService, PacienteService pacienteService) {
         this.mriService = mriService;
+        this.pacienteService = pacienteService;
     }
 
     @GetMapping("/upload")
     public String upload(Model model){
-        model.addAttribute("formularioEnvio", new MRI());
+        model.addAttribute("formularioEnvio", new Paciente());
         return "upload";
     }
 
     @PostMapping("/uploadImage")
-    public ResponseEntity<String> uploadFile(@RequestParam("image")MultipartFile file, Model model, @ModelAttribute MRI formularioEnvio){
+    public ResponseEntity<String> uploadFile(@RequestParam("image")MultipartFile file, Model model, @ModelAttribute Paciente formularioEnvio){
 
-        model.addAttribute("formularioEnvio",new MRI());
+        model.addAttribute("formularioEnvio",new Paciente());
 
         String nomePaciente = formularioEnvio.getNomePaciente();
         String contatoPaciente = formularioEnvio.getContatoPaciente();
         String descricaoPaciente = formularioEnvio.getDescricaoDiagnostico();
 
-        MRI mriData = new MRI();
-        mriData.setNomePaciente(nomePaciente);
-        mriData.setContatoPaciente(contatoPaciente);
-        mriData.setDescricaoDiagnostico(descricaoPaciente);
+        Paciente paciente = new Paciente();
+        paciente.setNomePaciente(nomePaciente);
+        paciente.setContatoPaciente(contatoPaciente);
+        paciente.setDescricaoDiagnostico(descricaoPaciente);
 
-        mriService.addImage(mriData);
+        pacienteService.addPaciente(paciente);
         if(file.isEmpty()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please select a file and upload it!!");
         }

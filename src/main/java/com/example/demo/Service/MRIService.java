@@ -27,6 +27,7 @@ public class MRIService  {
     public void addImage(MRI mri){
         if (mri != null)
             mriRepository.save(mri);
+
         else
             throw new IllegalArgumentException("Usuário não está passando nada para persistir no banco de dados");
         mriRepository.flush();
