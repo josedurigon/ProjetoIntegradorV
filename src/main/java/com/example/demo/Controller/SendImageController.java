@@ -55,12 +55,11 @@ public class SendImageController {
         paciente.setContatoPaciente(contatoPaciente);
         paciente.setDescricaoDiagnostico(descricaoPaciente);
 
-        mri.setPaciente(paciente);
+//        mri.setPacienteId(paciente.getIdPaciente());
 
-//        mri.setUser();  Formulario de login pra pegar o usuario (medico) e passar o objeto nesse setter aqui
         mriService.addImage(mri);
-
         pacienteService.addPaciente(paciente);
+
         if(file.isEmpty()){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please select a file and upload it!!");
         }

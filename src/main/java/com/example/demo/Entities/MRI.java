@@ -12,16 +12,11 @@ public class MRI {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_mri")
-    public Long idMri;
+    public Integer idMri;
 
     @ManyToOne
     @JoinColumn(name="idUser")
     public User user;
-
-    public Paciente paciente;
-
-
-
 
 
 }
