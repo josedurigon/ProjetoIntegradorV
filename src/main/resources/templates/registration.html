@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>IA MRI</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!--<link th:href="@{/styles.css}" rel="stylesheet" />-->
+    <link th:href="@{/css/stylesRegistration.css}" rel="stylesheet" />
+
+
+
+</head>
+<body>
+<h2>User Registration</h2>
+<form action="#" th:action="@{/register}" th:object="${user}" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" th:field="*{username}" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" th:field="*{password}" required><br><br>
+    <!-- Add more fields as needed -->
+    <button type="submit">Register</button>
+</form>
+</body>
+</html>
