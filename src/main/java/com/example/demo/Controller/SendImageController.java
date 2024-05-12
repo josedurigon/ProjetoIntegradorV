@@ -54,6 +54,7 @@ public class SendImageController {
         paciente.setNomePaciente(nomePaciente);
         paciente.setContatoPaciente(contatoPaciente);
         paciente.setDescricaoDiagnostico(descricaoPaciente);
+        paciente.setMri(mri);
 
 //        mri.setPacienteId(paciente.getIdPaciente());
 

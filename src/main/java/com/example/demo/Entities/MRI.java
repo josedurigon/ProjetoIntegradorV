@@ -10,7 +10,9 @@ import lombok.Data;
 public class MRI {
 
     @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name="id_mri")
     public Integer idMri;
 
