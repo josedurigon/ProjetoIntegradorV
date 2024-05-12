@@ -5,6 +5,7 @@ import com.example.demo.Entities.Paciente;
 import com.example.demo.Service.MRIService;
 import com.example.demo.Service.PacienteService;
 import com.example.demo.repository.PacienteRepository;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.io.IOException;
 
@@ -41,8 +45,6 @@ public class SendImageController {
     public ResponseEntity<String> uploadFile(@RequestParam("image")MultipartFile file, Model model, @ModelAttribute Paciente formularioEnvio){
 
         MRI mri = new MRI();
-
-
 
         model.addAttribute("formularioEnvio",new Paciente());
 
@@ -76,16 +78,26 @@ public class SendImageController {
             HttpEntity<byte[]> requestEntity = new HttpEntity<>(bytes, headers);
 
 
-            String apiUrl = "http://localhost:9090";
-            ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
+            //MultiValueMap<String, Object> requestBody = new LinkedMultiValueMap<>();
+//            requestEntity.add("image_bytes", bytes);
 
-            if(responseEntity.getStatusCode() == HttpStatus.OK){
+            String apiUrl = "http://127.0.0.1:8000/segmentation/";
+//            String apiUrl = "http://localhost:8080/segmentation/";
+            ResponseEntity<byte[]> response = restTemplate.postForEntity(apiUrl, requestEntity, byte[].class);
+
+            //ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, requestBody, byte[].class);
+
+            //TODO converter o bytearray do response para Jpeg (isso que sera exibido pro usuário)
+
+            if(response.getStatusCode() == HttpStatus.OK){
                 return ResponseEntity.status(HttpStatus.OK).body("Good");
             }
+
             else{
                 return ResponseEntity.badRequest().body("Upload failed, please check communication with api {status 2}");
             }
 
+//            return ResponseEntity.status(HttpStatus.OK).body("ok");
 
         }catch (IOException io){
             io.printStackTrace();
