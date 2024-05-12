@@ -40,6 +40,10 @@ public class SendImageController {
     @PostMapping("/uploadImage")
     public ResponseEntity<String> uploadFile(@RequestParam("image")MultipartFile file, Model model, @ModelAttribute Paciente formularioEnvio){
 
+        MRI mri = new MRI();
+
+
+
         model.addAttribute("formularioEnvio",new Paciente());
 
         String nomePaciente = formularioEnvio.getNomePaciente();
@@ -50,6 +54,11 @@ public class SendImageController {
         paciente.setNomePaciente(nomePaciente);
         paciente.setContatoPaciente(contatoPaciente);
         paciente.setDescricaoDiagnostico(descricaoPaciente);
+
+        mri.setPaciente(paciente);
+
+//        mri.setUser();  Formulario de login pra pegar o usuario (medico) e passar o objeto nesse setter aqui
+        mriService.addImage(mri);
 
         pacienteService.addPaciente(paciente);
         if(file.isEmpty()){
@@ -63,7 +72,7 @@ public class SendImageController {
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-            MRI mri = new MRI();
+
             HttpEntity<byte[]> requestEntity = new HttpEntity<>(bytes, headers);
 
 
@@ -82,7 +91,7 @@ public class SendImageController {
             io.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Internal error. Something went terribly wrong... Status {1}");
 
+            }
         }
-    }
 
 }

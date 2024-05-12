@@ -18,6 +18,8 @@ public class MRI {
     @JoinColumn(name="idUser")
     public User user;
 
+    public Paciente paciente;
+
 
 
 
