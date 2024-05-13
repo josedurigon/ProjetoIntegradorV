@@ -8,3 +8,7 @@
   <li>Faça o merge na desenv e verifique se as mudanças funcionam</li>
   <li>Abra um merge request ( ou pull request) para mergear na main (master)</li>
 </ol>
+
+
+<p>https://github.com/RickLeite/Brain-tumor-detection.git</p>
+<p>https://github.com/RickLeite/Brain-tumor-detection.git</p>
