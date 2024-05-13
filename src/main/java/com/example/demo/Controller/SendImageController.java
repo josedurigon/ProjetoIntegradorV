@@ -83,11 +83,8 @@ public class SendImageController {
             HttpEntity<byte[]> requestEntity = new HttpEntity<>(bytes, headers);
 
 
-            //MultiValueMap<String, Object> requestBody = new LinkedMultiValueMap<>();
-//            requestEntity.add("image_bytes", bytes);
 
             String apiUrl = "http://127.0.0.1:8000/segmentation/";
-//            String apiUrl = "http://localhost:8080/segmentation/";
             ResponseEntity<byte[]> response = restTemplate.postForEntity(apiUrl, requestEntity, byte[].class);
 
 
