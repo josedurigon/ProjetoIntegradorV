@@ -2,10 +2,15 @@ package com.example.demo.Service;
 
 import com.example.demo.Entities.User;
 import com.example.demo.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserService {
 
     private final UserRepository userRepository;
@@ -35,7 +40,7 @@ public class UserService {
         Optional<User> existingUserOptional = userRepository.findById(id);
         if (existingUserOptional.isPresent()) {
             User existingUser = existingUserOptional.get();
-            existingUser.setUserName(user.getUserName());
+            existingUser.setUsername(user.getUsername());
             // Update other fields if needed
             userRepository.save(existingUser);
             return true;
@@ -48,4 +53,9 @@ public class UserService {
     public void deleteUser(String id){
         userRepository.deleteById(id);
     }
+
+    public User findByUsername(String userName){
+        return userRepository.findByUsername(userName);
+    }
+
 }

@@ -12,7 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public String idUser;
     public String nome;
-    public String userName;
-    public String pass;
+    public String username;
+    public String password;
     public String email;
 }
