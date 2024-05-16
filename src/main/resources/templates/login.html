@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Please Log In</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link th:href="@{/css/stylesLogin.css}" rel="stylesheet" />
 </head>
 <body>
 <h1>Please Log In</h1>
@@ -17,6 +20,8 @@
         <input type="password" name="password" placeholder="Password"/>
     </div>
     <input type="submit" value="Log in" />
+    <p>Não possui uma conta?</p>
+    <a href="/register">Criar uma conta</a>
 </form>
 </body>
 </html>

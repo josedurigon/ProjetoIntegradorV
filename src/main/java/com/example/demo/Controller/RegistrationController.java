@@ -31,6 +31,8 @@ public class RegistrationController {
         User user = new User();
         user.setUsername(dto.getUsername());  // Assuming getUserName() is a method in RegistrationDto
         user.setPassword(dto.getPassword());  // Assuming getPassword() is a method in RegistrationDto
+        user.setEmail(dto.getEmail());
+        user.setNome(dto.getName());
 
         // Add the user using the user service
         boolean isRegistered = userService.addUser(user);
