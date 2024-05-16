@@ -2,6 +2,7 @@ package com.example.demo.DTO;
 
 public class RegistrationDto {
 
+
     private String username;
     private String password;
     private String name;
@@ -36,6 +37,7 @@ public class RegistrationDto {
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 }
