@@ -3,10 +3,12 @@ package com.example.demo.Controller;
 import com.example.demo.DTO.RegistrationDto;
 import com.example.demo.Entities.User;
 import com.example.demo.Service.UserService;
+import com.example.demo.enumerations.Roles;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegistrationController {
 
     private final UserService userService;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public RegistrationController(UserService userService /*PasswordEncoder passwordEncoder*/) {
+    public RegistrationController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
-//        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -29,26 +31,18 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String registerUser(RegistrationDto dto, Model model) {
-        // Mapping RegistrationDto to User entity
+    public String registerUser(@ModelAttribute User user) {
 
 
-        User user = new User();
-        user.setUsername(dto.getUsername());  // Assuming getUserName() is a method in RegistrationDto
-//        dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-        user.setPassword(dto.getPassword());  // Assuming getPassword() is a method in RegistrationDto
-        user.setEmail(dto.getEmail());
-        user.setNome(dto.getName());
 
         // Add the user using the user service
+        if (user != null){
+            user.setRole(Roles.USER.toString());
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+
         boolean isRegistered = userService.addUser(user);
 
-        if (isRegistered) {
-            model.addAttribute("message", "User registered successfully");
-            return "success";  // Assuming there is a success.html template
-        } else {
-            model.addAttribute("message", "Error registering user");
-            return "registration";  // Redirect back to registration in case of error
-        }
+        return isRegistered?"redirect:/login" : "redirect:/error";
     }
 }

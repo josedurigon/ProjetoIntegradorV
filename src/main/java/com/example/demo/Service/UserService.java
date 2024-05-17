@@ -2,13 +2,11 @@ package com.example.demo.Service;
 
 import com.example.demo.Entities.User;
 import com.example.demo.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -23,17 +21,26 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public static List<User> userList = new ArrayList<>();
+
+
     public Optional getUserById(String id) {
         return userRepository.findById(id);
     }
 
     public boolean addUser(User user) {
         if (user != null) {
-            userRepository.saveAndFlush(user);
+            userList.add(user);
+//            userRepository.saveAndFlush(user);
             return true;
-        } else {
-            return false;
-        }
+        }else{return false;}
+
+    }
+
+    public User findByLogin(String userName){
+        return  userList.stream().filter(user -> user.getUsername()
+                        .equals(userName))
+                        .findFirst().orElse(null);
     }
 
     public boolean updateUser(String id, User user) {
