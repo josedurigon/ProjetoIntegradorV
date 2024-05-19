@@ -2,10 +2,13 @@ package com.example.demo.Service;
 
 import com.example.demo.Entities.User;
 import com.example.demo.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+@Service
 public class UserService {
 
     private final UserRepository userRepository;
@@ -18,24 +21,33 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public static List<User> userList = new ArrayList<>();
+
+
     public Optional getUserById(String id) {
         return userRepository.findById(id);
     }
 
     public boolean addUser(User user) {
         if (user != null) {
+            userList.add(user);
             userRepository.saveAndFlush(user);
             return true;
-        } else {
-            return false;
-        }
+        }else{return false;}
+
+    }
+
+    public User findByLogin(String userName){
+        return  userList.stream().filter(user -> user.getUsername()
+                        .equals(userName))
+                        .findFirst().orElse(null);
     }
 
     public boolean updateUser(String id, User user) {
         Optional<User> existingUserOptional = userRepository.findById(id);
         if (existingUserOptional.isPresent()) {
             User existingUser = existingUserOptional.get();
-            existingUser.setUserName(user.getUserName());
+            existingUser.setUsername(user.getUsername());
             // Update other fields if needed
             userRepository.save(existingUser);
             return true;
@@ -48,4 +60,9 @@ public class UserService {
     public void deleteUser(String id){
         userRepository.deleteById(id);
     }
+
+    public User findByUsername(String userName){
+        return userRepository.findByUsername(userName);
+    }
+
 }
