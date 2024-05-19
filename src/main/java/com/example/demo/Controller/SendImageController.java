@@ -2,12 +2,21 @@ package com.example.demo.Controller;
 
 import com.example.demo.Entities.MRI;
 import com.example.demo.Entities.Paciente;
+import com.example.demo.Entities.User;
+import com.example.demo.Service.CustomUserDetailsService;
 import com.example.demo.Service.MRIService;
 import com.example.demo.Service.PacienteService;
+import com.example.demo.Service.UserService;
 import com.example.demo.repository.PacienteRepository;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import jakarta.servlet.http.HttpSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,19 +35,27 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @Controller
 public class SendImageController {
 
    private final MRIService mriService;
    private final PacienteService pacienteService;
+   private final UserService userService;
+
+   private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
 
    @Autowired
-    public SendImageController(MRIService mriService, PacienteService pacienteService) {
+    public SendImageController(MRIService mriService, PacienteService pacienteService, UserService userService) {
         this.mriService = mriService;
         this.pacienteService = pacienteService;
-    }
+       this.userService = userService;
+   }
+
+   @Autowired
+    ObjectFactory<HttpSession> httpSessionFactory;
 
     @GetMapping("/upload")
     public String upload(Model model){
@@ -48,6 +65,18 @@ public class SendImageController {
 
     @PostMapping("/uploadImage")
     public ResponseEntity<String> uploadFile(@RequestParam("image")MultipartFile file, Model model, @ModelAttribute Paciente formularioEnvio){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String currentUsername = authentication.getName();
+
+        logger.info("Sessao: {}", currentUsername);
+
+        User user = userService.findByUsername(currentUsername);
+
+
+        ArrayList<String> list = new ArrayList<>();
+
 
         MRI mri = new MRI();
 
@@ -62,6 +91,13 @@ public class SendImageController {
         paciente.setContatoPaciente(contatoPaciente);
         paciente.setDescricaoDiagnostico(descricaoPaciente);
         paciente.setMri(mri);
+
+        mri.setUser(user);
+
+
+        logger.info("Informações de mri: idMri{}, idUser{}, name user{}", mri.idMri, mri.user.getIdUser(), mri.user.getName());
+
+
 
 //        mri.setPacienteId(paciente.getIdPaciente());
 
