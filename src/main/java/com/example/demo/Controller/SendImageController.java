@@ -20,6 +20,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Controller
@@ -85,11 +90,19 @@ public class SendImageController {
 //            String apiUrl = "http://localhost:8080/segmentation/";
             ResponseEntity<byte[]> response = restTemplate.postForEntity(apiUrl, requestEntity, byte[].class);
 
-            //ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, requestBody, byte[].class);
+
+
+            String filePathToSave = "src/main/resources/static/images/";
 
             //TODO converter o bytearray do response para Jpeg (isso que sera exibido pro usuário)
 
             if(response.getStatusCode() == HttpStatus.OK){
+                byte[] imageBytes = response.getBody();
+                BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageBytes));
+                String fileName = "uploaded_image.jpg"; // You can use any name you want
+                File imageFile = new File(filePathToSave + fileName);
+                ImageIO.write(image, "jpg", imageFile);
+
                 return ResponseEntity.status(HttpStatus.OK).body("Good");
             }
 
