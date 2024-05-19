@@ -38,9 +38,12 @@ public class UserService {
     }
 
     public User findByLogin(String userName){
-        return  userList.stream().filter(user -> user.getUsername()
-                        .equals(userName))
-                        .findFirst().orElse(null);
+//        userList.stream().filter(user -> user.getUsername()
+//                        .equals(userName))
+//                        .findFirst().orElse(null);
+
+        return userRepository.findByUsername(userName);
+
     }
 
     public boolean updateUser(String id, User user) {
