@@ -31,7 +31,7 @@ public class UserService {
     public boolean addUser(User user) {
         if (user != null) {
             userList.add(user);
-//            userRepository.saveAndFlush(user);
+            userRepository.saveAndFlush(user);
             return true;
         }else{return false;}
 
