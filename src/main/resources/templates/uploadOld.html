@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/stylesUpload.css}" rel="stylesheet" />
+    <title>Send Image</title>
+</head>
+<body>
+<div th:class = "container">
+    <h1>Submita suas imagens aqui</h1>
+    <section class="container">
+        <ection class="container-formulario">
+            <h3 class="titulo-formulario">Faça o upload das suas imagens aqui</h3>
+            <form action="/uploadImage" method="POST" enctype="multipart/form-data" th:object="${formularioEnvio}">
+                <input type="file" name="image" accept="image/*" multiple required>
+                <div class="container-input">
+                    <label for="nomePaciente">Nome Paciente</label>
+                    <input type="text" th:field="*{nomePaciente}">
+
+                    <label for="contatoPaciente">Contato</label>
+                    <input type="text" th:field="*{contatoPaciente}">
+
+                    <label for="descricaoDiagnostico">Descrição</label>
+                    <input type="text" th:field="*{descricaoDiagnostico}">
+                </div>
+
+                <br>
+                <button type="submit">Upload</button>
+            </form>
+        </ection>
+    </section>
+</div>
+
+</body>
+</html>
