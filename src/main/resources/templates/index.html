@@ -23,9 +23,15 @@
     </div>
 </div>
 <div class="container-2">
-
+    <!-- Logout button -->
+    <a href="#" th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-primary">
+        Logout
+    </a>
+    <!-- Hidden logout form -->
+    <form id="logout-form" th:action="@{/logout}" method="post" style="display: none;">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
