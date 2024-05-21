@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico de Raio-X</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Logo centralizada -->
+<div class="logo-container">
+    <img src="batimento-cardiaco.png" alt="Logo Batimento Cardíaco">
+</div>
+
+<!-- Container principal com o formulário de diagnóstico e pré-visualização da imagem -->
+<div class="container">
+    <div class="form-container">
+        <h2>Diagnóstico de Raio-X</h2>
+        <form id="diagnosisForm">
+            <div class="form-group">
+                <label for="patientName">Nome Completo do Paciente</label>
+                <input type="text" id="patientName" name="patientName" required>
+            </div>
+            <div class="form-group">
+                <label for="contactNumber">Número de Contato</label>
+                <input type="text" id="contactNumber" name="contactNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="imageUpload">Imagem Para Diagnóstico</label>
+                <input type="file" id="imageUpload" name="imageUpload" accept="image/*" class="btn" required>            
+            </div>
+            <div class="form-group">
+                <label for="description" class="custom-label">Descrição:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+    </div>
+    <div class="preview-container" id="imagePreviewContainer" style="display: none;">
+        <label id="previewLabel">Pré-visualização:</label>
+        <img id="imagePreview" src="#" alt="Pré-visualização da Imagem">
+    </div>
+</div>
+
+<!-- Botão de alternância de tema -->
+<button id="theme-toggle-btn" class="btn">Modo Claro</button>
+
+<!-- Importando o arquivo de script JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>

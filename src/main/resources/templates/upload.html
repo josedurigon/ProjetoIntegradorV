@@ -1,30 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnóstico de Raio-X</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/stylesUpload.css}" rel="stylesheet" />
+    <title>Send Image</title>
 </head>
 <body>
+<!-- <div th:class = "container">
+    <h1>Submita suas imagens aqui</h1>
+    <section class="container">
+        <section class="container-formulario">
+            <h3 class="titulo-formulario">Faça o upload das suas imagens aqui</h3>
+            <form action="/uploadImage" method="POST" enctype="multipart/form-data" th:object="${formularioEnvio}">
+                <input type="file" name="image" accept="image/*" multiple required>
+                <div class="container-input">
+                    <label for="nomePaciente">Nome Paciente</label>
+                    <input type="text" th:field="*{nomePaciente}">
 
-<!-- Logo centralizada -->
-<div class="logo-container">
-    <img src="batimento-cardiaco.png" alt="Logo Batimento Cardíaco">
-</div>
+                    <label for="contatoPaciente">Contato</label>
+                    <input type="text" th:field="*{contatoPaciente}">
 
-<!-- Container principal com o formulário de diagnóstico e pré-visualização da imagem -->
-<div class="container">
+                    <label for="descricaoDiagnostico">Descrição</label>
+                    <input type="text" th:field="*{descricaoDiagnostico}">
+                </div>
+
+                <br>
+                <button type="submit">Upload</button>
+            </form>
+        </ection>
+    </section>
+</div> -->
+
+<div th:class = "container">
+    
     <div class="form-container">
+        
         <h2>Diagnóstico de Raio-X</h2>
         <form id="diagnosisForm">
             <div class="form-group">
                 <label for="patientName">Nome Completo do Paciente</label>
-                <input type="text" id="patientName" name="patientName" required>
+                <input type="text" th:field="*{nomePaciente}">
             </div>
             <div class="form-group">
                 <label for="contactNumber">Número de Contato</label>
-                <input type="text" id="contactNumber" name="contactNumber" required>
+                <input type="text" th:field="*{contatoPaciente}">
             </div>
             <div class="form-group">
                 <label for="imageUpload">Imagem Para Diagnóstico</label>
@@ -32,9 +52,9 @@
             </div>
             <div class="form-group">
                 <label for="description" class="custom-label">Descrição:</label>
-                <textarea id="description" name="description" rows="4" required></textarea>
+                <input type="text" th:field="*{descricaoDiagnostico}">
             </div>
-            <button type="submit" class="btn">Enviar</button>
+            <button type="submit" class="btn">Upload</button>
         </form>
     </div>
     <div class="preview-container" id="imagePreviewContainer" style="display: none;">
@@ -42,12 +62,6 @@
         <img id="imagePreview" src="#" alt="Pré-visualização da Imagem">
     </div>
 </div>
-
-<!-- Botão de alternância de tema -->
-<button id="theme-toggle-btn" class="btn">Modo Claro</button>
-
-<!-- Importando o arquivo de script JavaScript -->
-<script src="script.js"></script>
 
 </body>
 </html>
