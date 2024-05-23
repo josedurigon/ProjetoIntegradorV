@@ -26,7 +26,6 @@ body {
     min-height: 100vh;
     position: relative;
     transition: background-color 0.3s ease, color 0.3s ease;
-    
 }
 
 /* Estilos para o modo claro */
@@ -63,7 +62,6 @@ body.dark-mode textarea {
 }
 
 /* Estilo para labels */
-/* Estilize o label para o botão "Escolher arquivo" */
 label {
     display: block; /* Cada label em uma linha separada */
     margin-bottom: 8px; /* Espaçamento entre os elementos */
@@ -82,13 +80,12 @@ input[type="file"] {
     transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
 }
 
-/* Estilize o input do tipo arquivo no modo escuro, se necessário */
+/* Estilize o input do tipo arquivo no modo escuro */
 body.dark-mode input[type="file"] {
     background-color: #333; /* Cor de fundo no modo escuro */
     color: #fff; /* Cor do texto no modo escuro */
     border-color: #666; /* Cor da borda no modo escuro */
 }
-
 
 /* Estilos para botões */
 .btn {
@@ -140,6 +137,7 @@ h2, .container {
     transform: translateX(-50%);
     z-index: 999; /* Garante que a logo fique acima do conteúdo */
 }
+
 .logo-container img {
     width: 100px; /* Definindo um tamanho específico para a logo */
     height: auto; /* Mantendo a proporção original */
@@ -154,19 +152,19 @@ body.dark-mode .logo-container img {
     filter: hue-rotate(180deg);
 }
 
-/* Estilos para o botão de alternância de tema no modo escuro */
-body.dark-mode #theme-toggle-btn {
-    background-color: var(--cor-fundo-escuro);
-    color: var(--cor-texto-escuro);
-    border: 1px solid var(--cor-borda-escuro);
-}
-
-/* Adiciona transição de fade nos botões de alternância de tema */
+/* Estilos para o botão de alternância de tema */
 #theme-toggle-btn {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+/* Estilos para o botão de alternância de tema no modo escuro */
+body.dark-mode #theme-toggle-btn {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-escuro);
+    border: 1px solid var(--cor-borda-escuro);
 }
 
 /* Estilizando o label que simula o botão de arquivo */
@@ -193,7 +191,6 @@ input[type="file"]:hover + label.btn {
     vertical-align: top; /* Alinha o "label" personalizado ao topo do campo */
     padding-right: 10px; /* Adiciona espaçamento à direita para separação do campo */
     font-weight: bold; /* Estilo de fonte */
-    /* Outros estilos conforme necessário */
 }
 
 /* Desabilitar redimensionamento para todos os elementos */
@@ -210,7 +207,6 @@ textarea {
     text-align: center; /* Alinha o conteúdo ao centro */
 }
 
-
 /* Estilos para o container principal */
 .container {
     display: flex; /* Usa flexbox para o layout */
@@ -224,12 +220,10 @@ textarea {
     margin-right: 20px; /* Margem à direita para separar da pré-visualização */
 }
 
-
 #imagePreview {
     max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
     width: 100%;
 }
-
 
 /* Define a animação de batida do coração */
 @keyframes heartbeat {
