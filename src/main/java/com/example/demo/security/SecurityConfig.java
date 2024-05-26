@@ -28,8 +28,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers( "/register", "/login", "/css/**", "/images/**").permitAll()
+                        .requestMatchers( "/register", "/login", "/css/**", "/images/**","/upload").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/uploadImage").permitAll()
                         .anyRequest().authenticated()
+
 
                 )
                 .logout(LogoutConfigurer::permitAll)
