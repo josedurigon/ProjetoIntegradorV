@@ -11,6 +11,8 @@
     <div class="container text-center mt-5">
         <h1 class="welcome">Bem vindo ao MRI Analyzer!</h1>
         <p class="lead">Análise MRI avançada com tecnologia de IA</p>
+        <button id="theme-toggle-btn" class="btn btn-secondary">Modo Claro</button>
+
     </div>
 
     <div class="container-subtitulo text-center mt-4">
@@ -74,5 +76,62 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggleBtn = document.getElementById('theme-toggle-btn');
+      const body = document.body;
+      const html = document.documentElement;
+
+      // Verifica o tema atual ao carregar a página
+      const currentTheme = localStorage.getItem('theme');
+
+      if (currentTheme === 'dark') {
+          enableDarkMode();
+      } else {
+          disableDarkMode();
+      }
+
+      // Alterna entre os modos claro e escuro ao clicar no botão
+      themeToggleBtn.addEventListener('click', function() {
+          if (html.getAttribute('data-theme') === 'dark') {
+              disableDarkMode();
+          } else {
+              enableDarkMode();
+          }
+      });
+
+      function enableDarkMode() {
+          html.setAttribute('data-theme', 'dark');
+          themeToggleBtn.textContent = 'Modo Claro';
+          localStorage.setItem('theme', 'dark');
+      }
+
+      function disableDarkMode() {
+          html.setAttribute('data-theme', 'light');
+          themeToggleBtn.textContent = 'Modo Escuro';
+          localStorage.setItem('theme', 'light');
+      }
+  });
+
+  // Função para pré-visualização da imagem
+  function previewImage(event) {
+      const file = event.target.files[0];
+      const imagePreview = document.getElementById('imagePreview');
+      const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+              imagePreview.src = event.target.result;
+              imagePreviewContainer.style.display = 'block';
+          }
+          reader.readAsDataURL(file);
+      } else {
+          imagePreview.src = '#';
+          imagePreviewContainer.style.display = 'none';
+      }
+  }
+
+</script>
 </body>
 </html>

@@ -1,24 +1,178 @@
-/* styles.css */
+/* Definindo variáveis de cores para os modos claro e escuro */
+:root {
+    --cor-fundo-claro: #ffffff;
+    --cor-texto-claro: #000000;
+    --cor-caixa-dados-claro: #f4f4f4;
+    --cor-borda-claro: #dddddd;
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+    --cor-fundo-escuro: #111111;
+    --cor-texto-escuro: #ffffff;
+    --cor-caixa-dados-escuro: #333333;
+    --cor-borda-escuro: #666666;
+
+    --cor-botao-fundo: #ffffff;
+    --cor-botao-texto: #333333;
+    --cor-botao-borda: #dddddd;
 }
 
-.container-principal {
-    padding: 20px;
+/* Estilo global */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilos para o modo claro */
+[data-theme="light"] {
+    --cor-fundo: var(--cor-fundo-claro);
+    --cor-texto: var(--cor-texto-claro);
+    --cor-caixa-dados: var(--cor-caixa-dados-claro);
+    --cor-borda: var(--cor-borda-claro);
+}
+
+/* Estilos para o modo escuro */
+[data-theme="dark"] {
+    --cor-fundo: var(--cor-fundo-escuro);
+    --cor-texto: var(--cor-texto-escuro);
+    --cor-caixa-dados: var(--cor-caixa-dados-escuro);
+    --cor-borda: var(--cor-borda-escuro);
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+input[type="text"],
+textarea {
+    padding: 10px;
+    margin-bottom: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--cor-borda);
+    border-radius: 5px;
+    background-color: var(--cor-caixa-dados);
+    color: var(--cor-texto);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] input[type="file"] {
+    background-color: #333;
+    color: #fff;
+    border-color: #666;
+}
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    background-color: var(--cor-botao-fundo);
+    color: var(--cor-botao-texto);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] .btn {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-escuro);
+    border: 1px solid var(--cor-borda-escuro);
+}
+
+.btn {
+    transition: opacity 0.3s ease;
+}
+
+.btn:hover {
+    opacity: 0.7;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+h2, .container {
+    animation: fadeIn 1s ease forwards;
+}
+
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+}
+
+.logo-container img {
+    width: 100px;
+    height: auto;
+    animation: heartbeat 1s ease infinite;
+    filter: invert(100%) brightness(100%);
+}
+
+[data-theme="dark"] .logo-container img {
+    filter: hue-rotate(180deg);
+}
+
+#theme-toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+[data-theme="dark"] #theme-toggle-btn {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-escuro);
+    border: 1px solid var(--cor-borda-escuro);
+}
+
+label.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: var(--cor-botao-fundo);
+    color: var(--cor-botao-texto);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+label.btn:hover {
+    opacity: 0.7;
 }
 
 .welcome {
     font-size: 2.5em;
-    color: #060606;
 }
 
 .lead {
     font-size: 1.2em;
-    color: #6c757d;
 }
 
 .container-subtitulo {
@@ -46,12 +200,10 @@ body {
 h2 {
     margin-top: 40px;
     font-size: 2em;
-    color: #343a40;
 }
 
 h3 {
     font-size: 1.5em;
-    color: #060606;
 }
 
 blockquote {
@@ -62,27 +214,16 @@ blockquote {
 
 blockquote p {
     font-size: 1em;
-
-    color: #000000;
 }
 
 footer {
     margin-top: 50px;
     padding: 20px;
-    background-color: #;
-    color: white;
     text-align: center;
 }
 
-footer a {
-    color: #000000;
-    text-decoration: none;
-   }
 
 footer a:hover {
     text-decoration: underline;
 }
 
-.p-footer{
-    color: #6c757d;
-}
