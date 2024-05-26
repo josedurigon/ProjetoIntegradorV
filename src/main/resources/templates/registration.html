@@ -8,15 +8,13 @@
 
     <!--<link th:href="@{/styles.css}" rel="stylesheet" />-->
     <link th:href="@{/css/stylesRegistration.css}" rel="stylesheet" />
-
-
-
 </head>
 <body>
-<h2>User Registration</h2>
+<h2 class="company-name">MEGACARE</h2>
 <div class="logo-container text-center">
     <img th:src="@{/images/batimento-cardiaco.png}" alt="Logo Batimento Cardíaco">
 </div>
+<button id="theme-toggle-btn" class="btn btn-secondary">Modo Claro</button>
 <form action="#" th:action="@{/register}" th:object="${user}" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" th:field="*{username}" required><br><br>
@@ -34,5 +32,62 @@
     <!-- Add more fields as needed -->
     <button type="submit">Register</button>
 </form>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const body = document.body;
+
+    // Verifica o tema atual ao carregar a página
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'dark') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+
+    // Alterna entre os modos claro e escuro ao clicar no botão
+    themeToggleBtn.addEventListener('click', function() {
+        if (body.classList.contains('dark-mode')) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+
+    function enableDarkMode() {
+        body.classList.add('dark-mode');
+        themeToggleBtn.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+    }
+
+    function disableDarkMode() {
+        body.classList.remove('dark-mode');
+        themeToggleBtn.textContent = 'Modo Escuro';
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+// Função para pré-visualização da imagem
+function previewImage(event) {
+    const file = event.target.files[0];
+    const imagePreview = document.getElementById('imagePreview');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            imagePreview.src = event.target.result;
+            imagePreviewContainer.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    } else {
+        imagePreview.src = '#';
+        imagePreviewContainer.style.display = 'none';
+    }
+}
+</script>
 </body>
 </html>
