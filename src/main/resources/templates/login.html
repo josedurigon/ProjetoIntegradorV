@@ -1,27 +1,42 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Please Log In</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
     <link th:href="@{/css/stylesLogin.css}" rel="stylesheet" />
 </head>
-<body>
-<h1>Realize o login</h1>
-<div th:if="${param.error}">
-    Invalid username and password.</div>
-<div th:if="${param.logout}">
-    You have been logged out.</div>
-<form th:action="@{/login}" method="post">
-    <div>
-        <input type="text" name="username" placeholder="Username"/>
+<body class="light-mode">
+    <h2 class="company-name">MEGACARE</h2>
+    <div class="logo-container text-center">
+        <img th:src="@{/images/batimento-cardiaco.png}" alt="Logo Batimento Cardíaco">
     </div>
-    <div>
-        <input type="password" name="password" placeholder="Password"/>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <div th:if="${param.error}">
+            Invalid username and password.</div>
+        <div th:if="${param.logout}">
+            You have been logged out.</div>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Usuário</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" value="Log in" class="btn">Entrar</button>
+            <div class="register-link">
+                <p>Não tem uma conta? <a href="/register">Registrar-se</a></p>
+            </div>
+        </form>
     </div>
-    <input type="submit" value="Log in" />
-    <p>Não possui uma conta?</p>
-    <a href="/register">Criar uma conta</a>
-</form>
+    <button id="theme-toggle-btn" class="btn">Alternar Tema</button>
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle-btn');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+        });
+    </script>
 </body>
 </html>

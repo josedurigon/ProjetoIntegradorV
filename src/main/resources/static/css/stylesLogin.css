@@ -1,59 +1,267 @@
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        h1 {
-            color: #333;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-        }
-        .container div {
-            margin-bottom: 15px;
-        }
-        input[type="text"], input[type="password"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin: 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        p {
-            margin: 15px 0 5px;
-            color: #333;
-        }
-        a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .message {
-            color: red;
-            margin-bottom: 15px;
-        }
+/* Definindo variáveis de cores para os modos claro e escuro */
+:root {
+    --cor-fundo-claro: #ffffff; /* Fundo claro */
+    --cor-texto-claro: #000000; /* Texto escuro no modo claro */
+    --cor-caixa-dados-claro: #f4f4f4; /* Caixa de dados em fundo claro */
+    --cor-borda-claro: #dddddd; /* Borda em fundo claro */
+
+    --cor-fundo-escuro: #111111; /* Fundo escuro */
+    --cor-texto-escuro: #ffffff; /* Texto claro no modo escuro */
+    --cor-caixa-dados-escuro: #333333; /* Caixa de dados em fundo escuro */
+    --cor-borda-escuro: #666666; /* Borda em fundo escuro */
+
+    --cor-botao-fundo: #ffffff; /* Fundo do botão */
+    --cor-botao-texto: #333333; /* Texto do botão escuro no modo claro */
+    --cor-botao-borda: #dddddd; /* Borda do botão em fundo claro */
+}
+
+/* Estilo global */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    
+}
+
+/* Estilos para o modo claro */
+body.light-mode {
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-texto-claro);
+}
+
+/* Estilos para o modo escuro */
+body.dark-mode {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-escuro);
+}
+
+.company-name {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Estilos para caixas de dados (input, textarea) */
+input[type="text"],
+textarea {
+    padding: 10px;
+    margin-bottom: 16px; /* Adiciona margem inferior para separar dos elementos seguintes */
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--cor-borda-claro);
+    border-radius: 5px;
+    background-color: var(--cor-caixa-dados-claro);
+    color: var(--cor-texto-claro);
+}
+
+input[type="password"],
+textarea {
+    padding: 10px;
+    margin-bottom: 16px; /* Adiciona margem inferior para separar dos elementos seguintes */
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--cor-borda-claro);
+    border-radius: 5px;
+    background-color: var(--cor-caixa-dados-claro);
+    color: var(--cor-texto-claro);
+}
+
+/* Estilos para caixas de dados no modo escuro */
+body.dark-mode input[type="text"],
+body.dark-mode input[type="password"],
+body.dark-mode textarea {
+    background-color: var(--cor-caixa-dados-escuro);
+    color: var(--cor-texto-escuro);
+    border: 1px solid var(--cor-borda-escuro);
+}
+
+/* Estilo para labels */
+/* Estilize o label para o botão "Escolher arquivo" */
+label {
+    display: block; /* Cada label em uma linha separada */
+    margin-bottom: 8px; /* Espaçamento entre os elementos */
+    font-weight: bold; /* Estilo de fonte */
+}
+
+/* Estilize o input do tipo arquivo */
+input[type="file"] {
+    display: inline-block; /* Exibir como um elemento em linha */
+    padding: 10px; /* Espaçamento interno do botão */
+    border: 1px solid #ccc; /* Borda do botão */
+    border-radius: 5px; /* Cantos arredondados */
+    background-color: #f4f4f4; /* Cor de fundo do botão */
+    color: #333; /* Cor do texto do botão */
+    cursor: pointer; /* Cursor do mouse */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
+}
+
+/* Estilize o input do tipo arquivo no modo escuro, se necessário */
+body.dark-mode input[type="file"] {
+    background-color: #333; /* Cor de fundo no modo escuro */
+    color: #fff; /* Cor do texto no modo escuro */
+    border-color: #666; /* Cor da borda no modo escuro */
+}
+
+
+/* Estilos para botões */
+.btn {
+    padding: 12px 24px; /* Padding interno menor para os botões */
+    border-radius: 8px;
+    background-color: var(--cor-botao-fundo);
+    color: var(--cor-botao-texto);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilos para botões no modo escuro */
+body.dark-mode .btn {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-escuro);
+    border: 1px solid var(--cor-borda-escuro);
+}
+
+/* Adiciona transição de fade nos botões */
+.btn {
+    transition: opacity 0.3s ease;
+}
+
+/* Define o efeito de fade ao passar o mouse sobre os botões */
+.btn:hover {
+    opacity: 0.7;
+}
+
+/* Define a animação de fade-in para textos e containers */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+h2, .container {
+    animation: fadeIn 1s ease forwards;
+}
+
+/* Define a animação de batida do coração à logo */
+.logo-container {
+    position: absolute;
+    top: 20px; /* Distância de 20px a partir do topo */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999; /* Garante que a logo fique acima do conteúdo */
+}
+.logo-container img {
+    width: 100px; /* Definindo um tamanho específico para a logo */
+    height: auto; /* Mantendo a proporção original */
+    animation: heartbeat 1s ease infinite; /* Repete infinitamente */
+
+    /* Inverte a cor da imagem para o modo claro */
+    filter: invert(100%) brightness(100%); /* Inverte 100% das cores */
+}
+
+/* Remover o filtro de matiz no modo escuro */
+body.dark-mode .logo-container img {
+    filter: hue-rotate(180deg);
+}
+
+/* Estilos para o botão de alternância de tema no modo escuro */
+body.dark-mode #theme-toggle-btn {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-escuro);
+    border: 1px solid var(--cor-borda-escuro);
+}
+
+/* Adiciona transição de fade nos botões de alternância de tema */
+#theme-toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+/* Estilizando o label que simula o botão de arquivo */
+label.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Altera o estilo do label quando o input do tipo file estiver focado ou hover */
+input[type="file"]:focus + label.btn,
+input[type="file"]:hover + label.btn {
+    background-color: #e0e0e0;
+}
+
+.custom-label {
+    width: 150px; /* Largura fixa do "label" personalizado */
+    height: 20px; /* Altura fixa do "label" personalizado */
+    display: inline-block; /* Permite definir largura e altura */
+    vertical-align: top; /* Alinha o "label" personalizado ao topo do campo */
+    padding-right: 10px; /* Adiciona espaçamento à direita para separação do campo */
+    font-weight: bold; /* Estilo de fonte */
+    /* Outros estilos conforme necessário */
+}
+
+/* Desabilitar redimensionamento para todos os elementos */
+.custom-label,
+textarea {
+    resize: none; /* Impede o redimensionamento */
+}
+
+/* Estilos para o container da pré-visualização da imagem */
+#imagePreviewContainer {
+    float: right; /* Posiciona o container à direita */
+    width: 500px; /* Largura do container */
+    margin-left: 20px; /* Margem à esquerda para separar do formulário */
+    text-align: center; /* Alinha o conteúdo ao centro */
+}
+
+
+/* Estilos para o container principal */
+.container {
+    display: flex; /* Usa flexbox para o layout */
+    justify-content: space-between; /* Distribui os itens igualmente na linha */
+    align-items: flex-start; /* Alinha os itens ao topo */
+}
+
+/* Estilos para o container do formulário */
+.form-container {
+    flex: 1; /* Ocupa o espaço restante */
+    margin-right: 20px; /* Margem à direita para separar da pré-visualização */
+}
+
+
+#imagePreview {
+    max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
+    width: 100%;
+}
+
+
+/* Define a animação de batida do coração */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1); /* Tamanho normal */
+    }
+    50% {
+        transform: scale(1.1); /* Aumenta o tamanho em 10% */
+    }
+    100% {
+        transform: scale(1); /* Volta ao tamanho normal */
+    }
+}
