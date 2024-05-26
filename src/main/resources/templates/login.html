@@ -8,8 +8,8 @@
     <link th:href="@{/css/stylesLogin.css}" rel="stylesheet" />
 </head>
 <body class="light-mode">
-    <h2 class="company-name">MEGACARE</h2>
-    <div class="logo-container text-center">
+        <h2 class="company-name">MEGACARE</h2>
+        <div class="logo-container text-center">
         <img th:src="@{/images/batimento-cardiaco.png}" alt="Logo Batimento Cardíaco">
     </div>
 
@@ -20,23 +20,104 @@
         <div th:if="${param.logout}">
             You have been logged out.</div>
         <form th:action="@{/login}" method="post">
-            <label for="username">Usuário</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Senha</label>
-            <input type="password" id="password" name="password" required>
+            <blockquote class="blockquote">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" required>
+            </blockquote>
+
+            <blockquote class="blockquote">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
+            </blockquote>
+
             <button type="submit" value="Log in" class="btn">Entrar</button>
             <div class="register-link">
                 <p>Não tem uma conta? <a href="/register">Registrar-se</a></p>
             </div>
         </form>
     </div>
-    <button id="theme-toggle-btn" class="btn">Alternar Tema</button>
-    <script>
-        const toggleBtn = document.getElementById('theme-toggle-btn');
-        toggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            document.body.classList.toggle('light-mode');
-        });
-    </script>
+<button id="theme-toggle-btn" class="btn btn-secondary">Modo Claro</button>
+
+<!-- Importando o arquivo de script JavaScript -->
+<!--<script src="script.js"></script> -->
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const body = document.body;
+
+    // Verifica o tema atual ao carregar a página
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'dark') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+
+    // Alterna entre os modos claro e escuro ao clicar no botão
+    themeToggleBtn.addEventListener('click', function() {
+        if (body.classList.contains('dark-mode')) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+
+    function enableDarkMode() {
+        body.classList.add('dark-mode');
+        themeToggleBtn.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+    }
+
+    function disableDarkMode() {
+        body.classList.remove('dark-mode');
+        themeToggleBtn.textContent = 'Modo Escuro';
+        localStorage.setItem('theme', 'light');
+    }
+});
+
+// Função para pré-visualização da imagem
+function previewImage(event) {
+    const file = event.target.files[0];
+    const imagePreview = document.getElementById('imagePreview');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            imagePreview.src = event.target.result;
+            imagePreviewContainer.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    } else {
+        imagePreview.src = '#';
+        imagePreviewContainer.style.display = 'none';
+    }
+}
+
+// Adiciona um ouvinte de evento change ao elemento de upload de arquivo
+document.getElementById('imageUpload').addEventListener('change', previewImage);
+
+
+
+function enviarFormulario() {
+
+    //ALTERAR ESSA VARIÁVEL PARA A IMAGEM OBTIDA PELA API
+    var analysedImageURL = 'unnamed.jpg';
+
+    document.getElementById('imagePreview').src = analysedImageURL;
+    document.getElementById('previewLabel').textContent = 'Resultado';
+}
+
+document.getElementById('diagnosisForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+    enviarFormulario(); // Chama a função para enviar o formulário
+});
+
+
+
+</script>
 </body>
 </html>

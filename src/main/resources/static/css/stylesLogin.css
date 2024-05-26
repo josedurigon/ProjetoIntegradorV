@@ -10,9 +10,9 @@
     --cor-caixa-dados-escuro: #333333; /* Caixa de dados em fundo escuro */
     --cor-borda-escuro: #666666; /* Borda em fundo escuro */
 
-    --cor-botao-fundo: #ffffff; /* Fundo do botão */
-    --cor-botao-texto: #333333; /* Texto do botão escuro no modo claro */
-    --cor-botao-borda: #dddddd; /* Borda do botão em fundo claro */
+    --cor-botao-fundo: #007bff; /* Azul */
+    --cor-botao-texto: #ffffff; /* Texto branco */
+    --cor-botao-borda: #007bff; /* Borda azul */
 }
 
 /* Estilo global */
@@ -26,7 +26,6 @@ body {
     min-height: 100vh;
     position: relative;
     transition: background-color 0.3s ease, color 0.3s ease;
-    
 }
 
 /* Estilos para o modo claro */
@@ -41,28 +40,9 @@ body.dark-mode {
     color: var(--cor-texto-escuro);
 }
 
-.company-name {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
 /* Estilos para caixas de dados (input, textarea) */
 input[type="text"],
-textarea {
-    padding: 10px;
-    margin-bottom: 16px; /* Adiciona margem inferior para separar dos elementos seguintes */
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid var(--cor-borda-claro);
-    border-radius: 5px;
-    background-color: var(--cor-caixa-dados-claro);
-    color: var(--cor-texto-claro);
-}
-
+input[type="email"],
 input[type="password"],
 textarea {
     padding: 10px;
@@ -77,6 +57,7 @@ textarea {
 
 /* Estilos para caixas de dados no modo escuro */
 body.dark-mode input[type="text"],
+body.dark-mode input[type="email"],
 body.dark-mode input[type="password"],
 body.dark-mode textarea {
     background-color: var(--cor-caixa-dados-escuro);
@@ -85,7 +66,6 @@ body.dark-mode textarea {
 }
 
 /* Estilo para labels */
-/* Estilize o label para o botão "Escolher arquivo" */
 label {
     display: block; /* Cada label em uma linha separada */
     margin-bottom: 8px; /* Espaçamento entre os elementos */
@@ -104,13 +84,12 @@ input[type="file"] {
     transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
 }
 
-/* Estilize o input do tipo arquivo no modo escuro, se necessário */
+/* Estilize o input do tipo arquivo no modo escuro */
 body.dark-mode input[type="file"] {
     background-color: #333; /* Cor de fundo no modo escuro */
     color: #fff; /* Cor do texto no modo escuro */
     border-color: #666; /* Cor da borda no modo escuro */
 }
-
 
 /* Estilos para botões */
 .btn {
@@ -120,7 +99,8 @@ body.dark-mode input[type="file"] {
     color: var(--cor-botao-texto);
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Adiciona transição de cor da borda */
+    border: 1px solid var(--cor-botao-borda); /* Define a cor da borda */
 }
 
 /* Estilos para botões no modo escuro */
@@ -138,6 +118,8 @@ body.dark-mode .btn {
 /* Define o efeito de fade ao passar o mouse sobre os botões */
 .btn:hover {
     opacity: 0.7;
+    background-color: #0056b3; /* Azul escuro */
+    border-color: #0056b3; /* Borda azul escuro */
 }
 
 /* Define a animação de fade-in para textos e containers */
@@ -162,6 +144,7 @@ h2, .container {
     transform: translateX(-50%);
     z-index: 999; /* Garante que a logo fique acima do conteúdo */
 }
+
 .logo-container img {
     width: 100px; /* Definindo um tamanho específico para a logo */
     height: auto; /* Mantendo a proporção original */
@@ -176,19 +159,19 @@ body.dark-mode .logo-container img {
     filter: hue-rotate(180deg);
 }
 
-/* Estilos para o botão de alternância de tema no modo escuro */
-body.dark-mode #theme-toggle-btn {
-    background-color: var(--cor-fundo-escuro);
-    color: var(--cor-texto-escuro);
-    border: 1px solid var(--cor-borda-escuro);
-}
-
-/* Adiciona transição de fade nos botões de alternância de tema */
+/* Estilos para o botão de alternância de tema */
 #theme-toggle-btn {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+/* Estilos para o botão de alternância de tema no modo escuro */
+body.dark-mode #theme-toggle-btn {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-escuro);
+    border: 1px solid var(--cor-borda-escuro);
 }
 
 /* Estilizando o label que simula o botão de arquivo */
@@ -215,7 +198,6 @@ input[type="file"]:hover + label.btn {
     vertical-align: top; /* Alinha o "label" personalizado ao topo do campo */
     padding-right: 10px; /* Adiciona espaçamento à direita para separação do campo */
     font-weight: bold; /* Estilo de fonte */
-    /* Outros estilos conforme necessário */
 }
 
 /* Desabilitar redimensionamento para todos os elementos */
@@ -232,11 +214,10 @@ textarea {
     text-align: center; /* Alinha o conteúdo ao centro */
 }
 
-
 /* Estilos para o container principal */
 .container {
     display: flex; /* Usa flexbox para o layout */
-    justify-content: space-between; /* Distribui os itens igualmente na linha */
+    justify-content: flex-start; /* Alinha os itens à esquerda */
     align-items: flex-start; /* Alinha os itens ao topo */
 }
 
@@ -246,12 +227,10 @@ textarea {
     margin-right: 20px; /* Margem à direita para separar da pré-visualização */
 }
 
-
 #imagePreview {
     max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
     width: 100%;
 }
-
 
 /* Define a animação de batida do coração */
 @keyframes heartbeat {
@@ -264,4 +243,47 @@ textarea {
     100% {
         transform: scale(1); /* Volta ao tamanho normal */
     }
+}
+
+.company-name {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Estilos para o botão de registro */
+button[type="submit"] {
+    padding: 12px 24px; /* Padding interno menor para os botões */
+    border-radius: 8px;
+    background-color: var(--cor-botao-fundo);
+    color: var(--cor-botao-texto);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Adiciona transição de cor da borda */
+    border: 1px solid var(--cor-botao-borda); /* Define a cor da borda */
+}
+
+/* Estilos para o botão de registro no modo escuro */
+body.dark-mode button[type="submit"] {
+    background-color: #007bff; /* Azul */
+    color: #ffffff; /* Texto branco */
+    border: 1px solid #007bff; /* Borda azul */
+}
+
+/* Define o efeito de fade ao passar o mouse sobre o botão de registro */
+button[type="submit"]:hover {
+    opacity: 0.7;
+}
+
+blockquote {
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+    margin-top: 20px;
+}
+
+blockquote p {
+    font-size: 1em;
 }

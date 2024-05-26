@@ -6,10 +6,13 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
+<div class="logo-container text-center">
+    <img th:src="@{/images/batimento-cardiaco.png}" alt="Logo Batimento Cardíaco">
+</div>
 <body>
 <div class="container-principal">
     <div class="container text-center mt-5">
-        <h1 class="welcome">Bem vindo ao MRI Analyzer!</h1>
+        <h1 class="welcome">Bem vindo ao MEGACARE!</h1>
         <p class="lead">Análise MRI avançada com tecnologia de IA</p>
         <button id="theme-toggle-btn" class="btn btn-secondary">Modo Claro</button>
 
@@ -23,7 +26,9 @@
     <!-- Introduction Section -->
     <div class="container mt-5">
         <h2>Sobre nossos serviços:</h2>
-        <p>IA MRI oferece tecnologia de ponto em IA para ajudar profissionais da saúde analizarem de forma rápida e precisa. Nossa missão é melhorar a eficiencia dos desafios de realizar dianosticos implementando tecnologias de IA.</p>
+        <blockquote class="blockquote">
+            <p>IA MRI oferece tecnologia de ponto em IA para ajudar profissionais da saúde analizarem de forma rápida e precisa. Nossa missão é melhorar a eficiencia dos desafios de realizar dianosticos implementando tecnologias de IA.</p>
+        </blockquote>
     </div>
 
     <!-- Features Section -->
@@ -41,25 +46,6 @@
             <div class="col-md-4">
                 <h3>Segurança dos seus dados</h3>
                 <p>Seus dados estão mais que seguros com nossa plataforma utilizando as mais recentes tecnologias em segurança.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Testimonials Section -->
-    <div class="container mt-5">
-        <h2>Testemunhos</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <blockquote class="blockquote">
-                    <p class="mb-0">"O programa revolucionou a forma como realizamos o processo de diagnósticos. A acurácia e a velocidade são ímpares."</p>
-                    <footer class="blockquote-footer">Dr. Sarah Johnson, <cite title="Source Title">Hospital Central</cite></footer>
-                </blockquote>
-            </div>
-            <div class="col-md-6">
-                <blockquote class="blockquote">
-                    <p class="mb-0">"A confiabilidade e a eficiência que essa ferramenta possui melhorou a nossa análise das imagens de ressonância. "</p>
-                    <footer class="blockquote-footer">Dr. Michael Lee, <cite title="Source Title">HCOR</cite></footer>
-                </blockquote>
             </div>
         </div>
     </div>

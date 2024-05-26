@@ -8,7 +8,7 @@
     <link th:href="@{/css/stylesUpload.css}" rel="stylesheet">
 </head>
 <body>
-
+<h2 class="company-name">MEGACARE</h2>
 <!-- Logo centralizada -->
 <div class="logo-container text-center">
     <img th:src="@{/images/batimento-cardiaco.png}" alt="Logo Batimento Cardíaco">
@@ -20,20 +20,28 @@
         <h2>Diagnóstico de Ressonância</h2>
         <form action="/uploadImage" method="POST" enctype="multipart/form-data" th:object="${formularioEnvio}">
             <div class="form-group">
-                <label for="patientName">Nome Completo do Paciente</label>
-                <input type="text" id="patientName" th:field="*{nomePaciente}" class="form-control" required>
+                <blockquote class="blockquote">
+                    <label for="patientName">Nome Completo do Paciente</label>
+                    <input type="text" id="patientName" th:field="*{nomePaciente}" class="form-control" required>
+                </blockquote>
             </div>
             <div class="form-group">
-                <label for="contactNumber">Número de Contato</label>
-                <input type="text" id="contactNumber" th:field="*{contatoPaciente}" class="form-control" required>
+                <blockquote class="blockquote">
+                    <label for="contactNumber">Número de Contato</label>
+                    <input type="text" id="contactNumber" th:field="*{contatoPaciente}" class="form-control" required>
+                </blockquote>
             </div>
             <div class="form-group">
-                <label for="imageUpload">Imagem Para Diagnóstico</label>
-                <input type="file" id="imageUpload" name="imageUpload" accept="image/*" class="form-control-file" required>
+                <blockquote class="blockquote">
+                    <label for="imageUpload">Imagem Para Diagnóstico</label>
+                    <input type="file" id="imageUpload" name="imageUpload" accept="image/*" class="form-control-file" required>
+                </blockquote>
             </div>
             <div class="form-group">
-                <label for="description">Descrição:</label>
-                <textarea id="description" th:field="*{descricaoDiagnostico}" class="form-control" rows="4" required></textarea>
+                <blockquote class="blockquote">
+                    <label for="description">Descrição:</label>
+                    <textarea id="description" th:field="*{descricaoDiagnostico}" class="form-control" rows="4" required></textarea>
+                </blockquote>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
