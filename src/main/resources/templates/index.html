@@ -4,31 +4,75 @@
     <meta charset="utf-8">
     <title>IA MRI</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
-
-    <!--<link th:href="@{/styles.css}" rel="stylesheet" />-->
     <link th:href="@{/css/styles.css}" rel="stylesheet" />
-
-
-
 </head>
 <body>
 <div class="container-principal">
-    <div th:class = "container">
-        <h1 class="welcome">Welcome home!</h1>
+    <div class="container text-center mt-5">
+        <h1 class="welcome">Bem vindo ao MRI Analyzer!</h1>
+        <p class="lead">Análise MRI avançada com tecnologia de IA</p>
     </div>
-    <div th:class="container-subtitulo">
-        <p>Faça o upload de suas imagens para a IA analisar:</p><br>
-        <a href="/upload">MRI analyzer</a>
-    </div>
-</div>
-<div class="container-2">
 
+    <div class="container-subtitulo text-center mt-4">
+        <p>Faça o upload da sua imagem de ressonância para obter uma análise de IA:</p>
+        <a class="btn btn-primary" href="/upload">MRI Analyzer</a>
+    </div>
+
+    <!-- Introduction Section -->
+    <div class="container mt-5">
+        <h2>Sobre nossos serviços:</h2>
+        <p>IA MRI oferece tecnologia de ponto em IA para ajudar profissionais da saúde analizarem de forma rápida e precisa. Nossa missão é melhorar a eficiencia dos desafios de realizar dianosticos implementando tecnologias de IA.</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container mt-5">
+        <h2>Features</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Alta precisão</h3>
+                <p>Nossos modelos de IA são treinados com vastos datasets para assegurar alta taxa de confiabilidade e precisão.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Análise rápida</h3>
+                <p>Obtenha resultados em questão de segundos e construa um diagnóstico mais seguro para seu paciente.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Segurança dos seus dados</h3>
+                <p>Seus dados estão mais que seguros com nossa plataforma utilizando as mais recentes tecnologias em segurança.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="container mt-5">
+        <h2>Testemunhos</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <blockquote class="blockquote">
+                    <p class="mb-0">"O programa revolucionou a forma como realizamos o processo de diagnósticos. A acurácia e a velocidade são ímpares."</p>
+                    <footer class="blockquote-footer">Dr. Sarah Johnson, <cite title="Source Title">Hospital Central</cite></footer>
+                </blockquote>
+            </div>
+            <div class="col-md-6">
+                <blockquote class="blockquote">
+                    <p class="mb-0">"A confiabilidade e a eficiência que essa ferramenta possui melhorou a nossa análise das imagens de ressonância. "</p>
+                    <footer class="blockquote-footer">Dr. Michael Lee, <cite title="Source Title">HCOR</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="container mt-5 text-center">
+        <footer>
+            <p>&copy; 2024 IA MRI. All rights reserved.</p>
+            <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+        </footer>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>
