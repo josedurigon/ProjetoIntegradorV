@@ -209,10 +209,16 @@ textarea {
 }
 
 /* Estilos para o container principal */
+
+
 .container {
-    display: flex; /* Usa flexbox para o layout */
-    justify-content: space-between; /* Distribui os itens igualmente na linha */
-    align-items: flex-start; /* Alinha os itens ao topo */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px; /* Definindo uma largura máxima para o container */
+    width: 100%;
+    padding: 20px; /* Adicionando algum espaçamento interno */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
 }
 
 /* Estilos para o container do formulário */
@@ -221,9 +227,29 @@ textarea {
     margin-right: 20px; /* Margem à direita para separar da pré-visualização */
 }
 
+.preview-container {
+    display: none; /* Inicialmente oculto */
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.preview-container.active {
+    display: flex; /* Mostra quando estiver ativo */
+}
+
 #imagePreview {
+    display: none; /* Inicialmente oculto */
     max-width: 100%; /* Garante que a imagem não exceda a largura do contêiner */
     width: 100%;
+}
+
+#imagePreview.show {
+    display: block; /* Mostrar quando houver imagem */
 }
 
 /* Define a animação de batida do coração */

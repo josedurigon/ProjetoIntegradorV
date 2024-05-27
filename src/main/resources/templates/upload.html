@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagnóstico de Raio-X</title>
+    <script src="https://cdn.rawgit.com/seikichi/tiff.js/master/tiff.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link th:href="@{/css/stylesUpload.css}" rel="stylesheet">
 </head>
@@ -48,7 +49,6 @@
 
     </div>
     <div class="preview-container" id="imagePreviewContainer" >
-        <label id="previewLabel">Pré-visualização:</label>
         <img id="imagePreview" src="#" alt="Pré-visualização da Imagem">
     </div>
 </div>
@@ -60,56 +60,71 @@
 <!--<script src="script.js"></script> -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const themeToggleBtn = document.getElementById('theme-toggle-btn');
-        const body = document.body;
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const body = document.body;
 
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            enableDarkMode();
-        } else {
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'dark') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+
+    themeToggleBtn.addEventListener('click', function() {
+        if (body.classList.contains('dark-mode')) {
             disableDarkMode();
-        }
-
-        themeToggleBtn.addEventListener('click', function() {
-            if (body.classList.contains('dark-mode')) {
-                disableDarkMode();
-            } else {
-                enableDarkMode();
-            }
-        });
-
-        function enableDarkMode() {
-            body.classList.add('dark-mode');
-            themeToggleBtn.textContent = 'Modo Claro';
-            localStorage.setItem('theme', 'dark');
-        }
-
-        function disableDarkMode() {
-            body.classList.remove('dark-mode');
-            themeToggleBtn.textContent = 'Modo Escuro';
-            localStorage.setItem('theme', 'light');
-        }
-
-        document.getElementById('uploadImage').addEventListener('change', previewImage);
-
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const imagePreview = document.getElementById('imagePreview');
-            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    imagePreview.src = event.target.result;
-                    imagePreviewContainer.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            } else {
-                imagePreview.src = '#';
-                imagePreviewContainer.style.display = 'none';
-            }
+        } else {
+            enableDarkMode();
         }
     });
+
+    function enableDarkMode() {
+        body.classList.add('dark-mode');
+        themeToggleBtn.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+    }
+
+    function disableDarkMode() {
+        body.classList.remove('dark-mode');
+        themeToggleBtn.textContent = 'Modo Escuro';
+        localStorage.setItem('theme', 'light');
+    }
+
+    document.getElementById('uploadImage').addEventListener('change', previewImage);
+
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const imagePreview = document.getElementById('imagePreview');
+        const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const buffer = event.target.result;
+
+                // Check if the file is a .tif file
+                if (file.type === 'image/tiff') {
+                    const tiff = new Tiff({ buffer: buffer });
+                    const canvas = tiff.toCanvas();
+                    imagePreview.src = canvas.toDataURL();
+                } else {
+                    imagePreview.src = event.target.result;
+                }
+
+                imagePreview.classList.add('show');
+                imagePreviewContainer.classList.add('active');
+
+                // Move the form to the left
+                document.querySelector('.container').style.transform = 'translateX(-150px)';
+            }
+            reader.readAsArrayBuffer(file); // Use readAsArrayBuffer for .tif files
+        } else {
+            imagePreview.src = '#';
+            imagePreview.classList.remove('show');
+            imagePreviewContainer.classList.remove('active');
+            document.querySelector('.container').style.transform = 'translateX(0)';
+        }
+    }
 
     async function enviarFormulario(event) {
         event.preventDefault();
@@ -133,18 +148,12 @@
     }
 
     document.getElementById('diagnosisForm').addEventListener('submit', enviarFormulario);
+});
+
+
+
+
 </script>
+
 </body>
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <img id="imagem" src="#" alt="Pré-visualização da Imagem">
-    </div>
-</div>
-<script>
-    var modal = document.getElementById("modal");
-    var btn = document.getElementById("btn btn-primary");
-
-
-</script>
-
 </html>
