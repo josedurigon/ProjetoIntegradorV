@@ -3,16 +3,14 @@
     <meta charset="utf-8">
     <title>IA MRI</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link th:href="@{/css/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
-<h1>Retorno</h1>
-    <div class="preview-container" id="imagePreviewContainer" style="display: image;">
-        <label id="previewLabel">Resultado:</label>
-        <img id="imagePreview" src="/images/uploaded_image.jpg" alt="Imagem processada">
-    </div>
 
+<div class="preview-container" id="imagePreviewContainer" style="display: image;">
+    <label id="previewLabel">Resultado:</label>
+    <img id="imagePreview" src="/images/uploaded_image.jpg" alt="Imagem processada">
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -20,3 +18,54 @@
 
 </body>
 </html>
+
+<style>
+    body {
+        background-color: #121212;
+        color: #E0E0E0;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .preview-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    #previewLabel {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        color: #007bff;
+    }
+
+    #imagePreview {
+        max-width: 100%;
+        border: 2px solid #007bff;
+        border-radius: 10px;
+    }
+
+    a {
+        color: #007bff;
+    }
+
+    a:hover {
+        color: #0056b3;
+    }
+
+    .navbar {
+        background-color: #1F1B24;
+        border-bottom: 1px solid #007bff;
+    }
+
+    .navbar-brand, .navbar-nav .nav-link {
+        color: #E0E0E0;
+    }
+
+    .navbar-brand:hover, .navbar-nav .nav-link:hover {
+        color: #007bff;
+    }
+</style>
