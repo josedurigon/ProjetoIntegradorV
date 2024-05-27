@@ -229,8 +229,8 @@ footer a:hover {
 }
 .logo-container {
             position: absolute;
-            top: 50px; /* ajuste a distância do topo conforme necessário */
-            left: 500px; /* ajuste a distância da esquerda conforme necessário */
+            top: 40px; /* ajuste a distância do topo conforme necessário */
+            left: 250px; /* ajuste a distância da esquerda conforme necessário */
 }
 
 @keyframes fadeIn {
